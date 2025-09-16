@@ -142,7 +142,7 @@ function SideDrawer() {
             </Text>
           </Button>
         </Tooltip>
-        <Text fontSize="2xl" fontFamily="Work sans">
+        <Text fontSize="2xl" fontFamily="sans-serif" fontWeight="extrabold">
           CAKAP
         </Text>
         <div>
