@@ -1,4 +1,5 @@
 import { Button } from "@chakra-ui/button";
+import GoLogo from "./GoLogo";
 import { useDisclosure } from "@chakra-ui/hooks";
 import { Input } from "@chakra-ui/input";
 import { Box, Text } from "@chakra-ui/layout";
@@ -202,7 +203,14 @@ function SideDrawer() {
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
               />
-              <Button onClick={handleSearch}>Go</Button>
+              <Button
+                onClick={handleSearch}
+                p={0}
+                bg="transparent"
+                _hover={{ bg: "gray.100" }}
+              >
+                <GoLogo size={32} />
+              </Button>
             </Box>
             {loading ? (
               <ChatLoading />

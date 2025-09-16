@@ -60,7 +60,7 @@ const Login = () => {
       history.push("/chats");
     } catch (error) {
       toast({
-        title: "Error Occured!",
+        title: "Try Again!",
         description: error.response.data.message,
         status: "error",
         duration: 5000,
@@ -92,7 +92,7 @@ const Login = () => {
             placeholder="Enter password"
           />
           <InputRightElement width="4.5rem">
-            <Button h="1.75rem" w="80%"size="sm" onClick={handleClick}>
+            <Button h="1.75rem" w="80%" size="sm" onClick={handleClick}>
               {show ? <ViewIcon /> : <ViewOffIcon />}
             </Button>
           </InputRightElement>
