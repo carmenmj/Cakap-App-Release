@@ -11,6 +11,7 @@ import ProfileModal from "./miscellaneous/ProfileModal";
 import ScrollableChat from "./ScrollableChat";
 import Lottie from "react-lottie";
 import animationData from "../animations/typing.json";
+import GoLogo from "./miscellaneous/GoLogo";
 
 import io from "socket.io-client";
 import UpdateGroupChatModal from "./miscellaneous/UpdateGroupChatModal";
@@ -231,21 +232,31 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
                 <div>
                   <Lottie
                     options={defaultOptions}
-                    // height={50}
                     width={70}
-                    style={{ marginBottom: 15, marginLeft: 0 }}
+                    style={{ marginBottom: 15, marginLeft: 40 }}
                   />
                 </div>
               ) : (
                 <></>
               )}
-              <Input
-                variant="filled"
-                bg="#E0E0E0"
-                placeholder="Enter a message.."
-                value={newMessage}
-                onChange={typingHandler}
-              />
+              <div style={{ display: "flex", alignItems: "center" }}>
+                <Input
+                  variant="filled"
+                  bg="#E0E0E0"
+                  placeholder="Enter a message.."
+                  value={newMessage}
+                  onChange={typingHandler}
+                  style={{ flex: 1 }}
+                />
+                <div style={{ marginLeft: 8 }}>
+                  <GoLogo
+                    onClick={() => newMessage && sendMessage({ key: "Enter" })}
+                    size={36}
+                    color="#000000ff"
+                    bg="#E0E0E0"
+                  />
+                </div>
+              </div>
             </FormControl>
           </Box>
         </>
