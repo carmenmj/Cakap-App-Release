@@ -1,4 +1,5 @@
 import { ViewIcon } from "@chakra-ui/icons";
+import { Avatar } from "@chakra-ui/avatar";
 import {
   Modal,
   ModalOverlay,
@@ -22,7 +23,11 @@ const ProfileModal = ({ user, children }) => {
       {children ? (
         <span onClick={onOpen}>{children}</span>
       ) : (
-        <IconButton d={{ base: "flex" }} icon={<ViewIcon />} onClick={onOpen} />
+        <IconButton
+          d={{ base: "flex" }}
+          onClick={onOpen}
+          icon={<Avatar size="sm" name={user.name} src={user.pic} />}
+        />
       )}
       <Modal size="lg" onClose={onClose} isOpen={isOpen} isCentered>
         <ModalOverlay />
