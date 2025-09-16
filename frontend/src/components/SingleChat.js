@@ -222,23 +222,21 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
               </div>
             )}
 
+            {istyping && (
+              <div style={{ minHeight: 30, margin: "8px 0 0 40px" }}>
+                <Lottie
+                  options={defaultOptions}
+                  width={70}
+                  style={{ marginBottom: 15, marginLeft: 0 }}
+                />
+              </div>
+            )}
             <FormControl
               onKeyDown={sendMessage}
               id="first-name"
               isRequired
               mt={3}
             >
-              {istyping ? (
-                <div>
-                  <Lottie
-                    options={defaultOptions}
-                    width={70}
-                    style={{ marginBottom: 15, marginLeft: 40 }}
-                  />
-                </div>
-              ) : (
-                <></>
-              )}
               <div style={{ display: "flex", alignItems: "center" }}>
                 <Input
                   variant="filled"
