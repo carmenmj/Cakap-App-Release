@@ -1,4 +1,4 @@
-import { ViewIcon } from "@chakra-ui/icons";
+//import { ViewIcon } from "@chakra-ui/icons";
 import { Avatar } from "@chakra-ui/avatar";
 import {
   Modal,
