@@ -18,7 +18,7 @@ Cakap App is a full-stack chat application featuring real-time messaging, group 
 - MongoDB (local or cloud)
 
 ## For Web Access (Deployment)
-https://cakap-chatapp.vercel.app/chats
+https://cakap-chatapp.vercel.app
 
 ## For Local Setup
 ### Backend Setup
