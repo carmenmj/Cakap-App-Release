@@ -9,6 +9,7 @@ import { useState } from "react";
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 import { AttachmentIcon } from "@chakra-ui/icons";
 import { IconButton } from "@chakra-ui/react";
+import API from "../../api";
 
 const Signup = () => {
   const [show, setShow] = useState(false);
@@ -27,7 +28,7 @@ const Signup = () => {
     setPicLoading(true);
     if (!name || !email || !password || !confirmpassword) {
       toast({
-        title: "Please Fill all the Feilds",
+        title: "Please Fill all the Fields",
         status: "warning",
         duration: 5000,
         isClosable: true,
@@ -54,7 +55,7 @@ const Signup = () => {
           "Content-type": "application/json",
         },
       };
-      const { data } = await axios.post(
+      const { data } = await API.post(
         "/api/user",
         {
           name,

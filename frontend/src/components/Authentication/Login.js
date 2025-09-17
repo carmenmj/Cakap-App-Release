@@ -8,6 +8,7 @@ import { useToast } from "@chakra-ui/react";
 import { useHistory } from "react-router-dom";
 import { ChatState } from "../../Context/ChatProvider";
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
+import API from "../../api";
 
 const Login = () => {
   const [show, setShow] = useState(false);
@@ -24,7 +25,7 @@ const Login = () => {
     setLoading(true);
     if (!email || !password) {
       toast({
-        title: "Please Fill all the Feilds",
+        title: "Please Fill all the Fields",
         status: "warning",
         duration: 5000,
         isClosable: true,
@@ -41,7 +42,7 @@ const Login = () => {
         },
       };
 
-      const { data } = await axios.post(
+      const { data } = await API.post(
         "/api/user/login",
         { email, password },
         config

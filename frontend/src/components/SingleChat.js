@@ -16,6 +16,7 @@ import GoLogo from "./miscellaneous/GoLogo";
 import io from "socket.io-client";
 import UpdateGroupChatModal from "./miscellaneous/UpdateGroupChatModal";
 import { ChatState } from "../Context/ChatProvider";
+import API from "../api";
 const ENDPOINT =  process.env.REACT_APP_API_BASE_URL; 
 var socket, selectedChatCompare;
 
@@ -51,7 +52,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
 
       setLoading(true);
 
-      const { data } = await axios.get(
+      const { data } = await API.get(
         `/api/message/${selectedChat._id}`,
         config
       );
@@ -82,7 +83,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
           },
         };
         setNewMessage("");
-        const { data } = await axios.post(
+        const { data } = await API.post(
           "/api/message",
           {
             content: newMessage,
