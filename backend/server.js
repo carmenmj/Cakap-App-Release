@@ -1,4 +1,5 @@
 const express = require("express");
+const cors = require("cors");
 const connectDB = require("./config/db");
 const dotenv = require("dotenv");
 const userRoutes = require("./routes/userRoutes");
@@ -12,6 +13,12 @@ connectDB();
 const app = express();
 
 app.use(express.json()); // allow server to read JSON from requests
+
+//cors configuration
+app.use(cors({
+  origin: "https://cakap-chatapp.vercel.app", // allow only your deployed frontend
+  credentials: true, // allow cookies/auth headers if needed
+}));
 
 // main API routes
 app.use("/api/user", userRoutes);
@@ -51,7 +58,7 @@ const server = app.listen(
 const io = require("socket.io")(server, {
   pingTimeout: 60000,
   cors: {
-    origin: "https://cakap-chatapp.vercel.app/",
+    origin: "https://cakap-chatapp.vercel.app",
 
   },
 });
