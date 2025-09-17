@@ -16,7 +16,7 @@ import GoLogo from "./miscellaneous/GoLogo";
 import io from "socket.io-client";
 import UpdateGroupChatModal from "./miscellaneous/UpdateGroupChatModal";
 import { ChatState } from "../Context/ChatProvider";
-const ENDPOINT = "https://cakap-app-release.onrender.com"; 
+const ENDPOINT =  process.env.REACT_APP_API_BASE_URL; 
 var socket, selectedChatCompare;
 
 const SingleChat = ({ fetchAgain, setFetchAgain }) => {
