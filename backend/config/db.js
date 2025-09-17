@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const colors = require("colors");
 
+// function to connect to MongoDB
 const connectDB = async () => {
   try {
     const conn = await mongoose.connect(process.env.MONGO_URI, {
@@ -11,9 +12,10 @@ const connectDB = async () => {
     console.log(`MongoDB Connected: ${conn.connection.host}`.cyan.underline);
   } catch (error) {
     console.error(`Error: ${error.message}`.red.bold);
-    process.exit(1); // Exit with a non-zero status code to indicate an error
+    process.exit(1); 
   }
 };
 
+// export the function to use in other files
 module.exports = connectDB;
 
