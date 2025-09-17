@@ -46,16 +46,12 @@ function SideDrawer() {
     setNotification,
     chats,
     setChats,
+    logoutHandler,   
   } = ChatState();
 
   const toast = useToast();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const history = useHistory();
-
-  const logoutHandler = () => {
-    localStorage.removeItem("userInfo");
-    history.push("/");
-  };
 
   const handleSearch = async () => {
     if (!search) {
