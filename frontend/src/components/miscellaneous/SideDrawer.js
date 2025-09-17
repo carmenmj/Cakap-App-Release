@@ -1,4 +1,5 @@
 import { Button } from "@chakra-ui/button";
+import GoLogo from "./GoLogo";
 import { useDisclosure } from "@chakra-ui/hooks";
 import { Input } from "@chakra-ui/input";
 import { Box, Text } from "@chakra-ui/layout";
@@ -19,7 +20,7 @@ import {
 import { Tooltip } from "@chakra-ui/tooltip";
 import { BellIcon, ChevronDownIcon } from "@chakra-ui/icons";
 import { Avatar } from "@chakra-ui/avatar";
-import { useHistory } from "react-router-dom";
+//import { useHistory } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
 import { useToast } from "@chakra-ui/toast";
@@ -45,16 +46,12 @@ function SideDrawer() {
     setNotification,
     chats,
     setChats,
+    logoutHandler,
   } = ChatState();
 
   const toast = useToast();
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const history = useHistory();
-
-  const logoutHandler = () => {
-    localStorage.removeItem("userInfo");
-    history.push("/");
-  };
+  //const history = useHistory();
 
   const handleSearch = async () => {
     if (!search) {
@@ -141,8 +138,8 @@ function SideDrawer() {
             </Text>
           </Button>
         </Tooltip>
-        <Text fontSize="2xl" fontFamily="Work sans">
-          Talk-A-Tive
+        <Text fontSize="2xl" fontFamily="sans-serif" fontWeight="extrabold">
+          CAKAP
         </Text>
         <div>
           <Menu>
@@ -202,7 +199,14 @@ function SideDrawer() {
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
               />
-              <Button onClick={handleSearch}>Go</Button>
+              <Button
+                onClick={handleSearch}
+                p={0}
+                bg="transparent"
+                _hover={{ bg: "gray.100" }}
+              >
+                <GoLogo size={32} />
+              </Button>
             </Box>
             {loading ? (
               <ChatLoading />

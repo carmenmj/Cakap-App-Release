@@ -7,6 +7,7 @@ import axios from "axios";
 import { useToast } from "@chakra-ui/react";
 import { useHistory } from "react-router-dom";
 import { ChatState } from "../../Context/ChatProvider";
+import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 
 const Login = () => {
   const [show, setShow] = useState(false);
@@ -59,7 +60,7 @@ const Login = () => {
       history.push("/chats");
     } catch (error) {
       toast({
-        title: "Error Occured!",
+        title: "Try Again!",
         description: error.response.data.message,
         status: "error",
         duration: 5000,
@@ -91,14 +92,16 @@ const Login = () => {
             placeholder="Enter password"
           />
           <InputRightElement width="4.5rem">
-            <Button h="1.75rem" size="sm" onClick={handleClick}>
-              {show ? "Hide" : "Show"}
+            <Button h="1.75rem" w="80%" size="sm" onClick={handleClick}>
+              {show ? <ViewIcon /> : <ViewOffIcon />}
             </Button>
           </InputRightElement>
         </InputGroup>
       </FormControl>
       <Button
-        colorScheme="blue"
+        bg="#7685c8"
+        color="white"
+        _hover={{ bg: "#5a6aa8" }}
         width="100%"
         style={{ marginTop: 15 }}
         onClick={submitHandler}
@@ -108,7 +111,9 @@ const Login = () => {
       </Button>
       <Button
         variant="solid"
-        colorScheme="red"
+        bg="#dbe3ff"
+        color="#4253a5"
+        _hover={{ bg: "#b2c1ff" }}
         width="100%"
         onClick={() => {
           setEmail("guest@example.com");

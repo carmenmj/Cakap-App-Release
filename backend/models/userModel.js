@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcryptjs");
 
+// Define the schema for a user
 const userSchema = mongoose.Schema(
   {
     name: { type: "String", required: true },
@@ -25,6 +26,7 @@ userSchema.methods.matchPassword = async function (enteredPassword) {
   return await bcrypt.compare(enteredPassword, this.password);
 };
 
+// Hash password before saving the user
 userSchema.pre("save", async function (next) {
   if (!this.isModified) {
     next();

@@ -5,13 +5,16 @@ import { VStack } from "@chakra-ui/layout";
 import { useToast } from "@chakra-ui/toast";
 import axios from "axios";
 import { useState } from "react";
-import { useHistory } from "react-router";
+//import { useHistory } from "react-router";
+import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
+import { AttachmentIcon } from "@chakra-ui/icons";
+import { IconButton } from "@chakra-ui/react";
 
 const Signup = () => {
   const [show, setShow] = useState(false);
   const handleClick = () => setShow(!show);
   const toast = useToast();
-  const history = useHistory();
+  //const history = useHistory();
 
   const [name, setName] = useState();
   const [email, setEmail] = useState();
@@ -41,6 +44,7 @@ const Signup = () => {
         isClosable: true,
         position: "bottom",
       });
+      setPicLoading(false);
       return;
     }
     console.log(name, email, password, pic);
@@ -68,9 +72,8 @@ const Signup = () => {
         isClosable: true,
         position: "bottom",
       });
-      localStorage.setItem("userInfo", JSON.stringify(data));
       setPicLoading(false);
-      history.push("/chats");
+      window.location.href = "/";
     } catch (error) {
       toast({
         title: "Error Occured!",
@@ -100,9 +103,9 @@ const Signup = () => {
     if (pics.type === "image/jpeg" || pics.type === "image/png") {
       const data = new FormData();
       data.append("file", pics);
-      data.append("upload_preset", "chat-app");
-      data.append("cloud_name", "piyushproj");
-      fetch("https://api.cloudinary.com/v1_1/piyushproj/image/upload", {
+      data.append("upload_preset", "cakap-app");
+      data.append("cloud_name", "dfv66x5gy");
+      fetch("https://api.cloudinary.com/v1_1/dfv66x5gy/image/upload", {
         method: "post",
         body: data,
       })
@@ -154,14 +157,20 @@ const Signup = () => {
             placeholder="Enter Password"
             onChange={(e) => setPassword(e.target.value)}
           />
-          <InputRightElement width="4.5rem">
-            <Button h="1.75rem" size="sm" onClick={handleClick}>
-              {show ? "Hide" : "Show"}
+          <InputRightElement width="6rem">
+            <Button
+              h="1.75rem"
+              w="70%"
+              size="sm"
+              onClick={handleClick}
+              borderRadius="md"
+            >
+              {show ? <ViewIcon /> : <ViewOffIcon />}
             </Button>
           </InputRightElement>
         </InputGroup>
       </FormControl>
-      <FormControl id="password" isRequired>
+      <FormControl id="confirmpassword" isRequired>
         <FormLabel>Confirm Password</FormLabel>
         <InputGroup size="md">
           <Input
@@ -169,24 +178,48 @@ const Signup = () => {
             placeholder="Confirm password"
             onChange={(e) => setConfirmpassword(e.target.value)}
           />
-          <InputRightElement width="4.5rem">
-            <Button h="1.75rem" size="sm" onClick={handleClick}>
-              {show ? "Hide" : "Show"}
+          <InputRightElement width="6rem">
+            <Button
+              h="1.75rem"
+              w="70%"
+              size="sm"
+              onClick={handleClick}
+              borderRadius="md"
+            >
+              {show ? <ViewIcon /> : <ViewOffIcon />}
             </Button>
           </InputRightElement>
         </InputGroup>
       </FormControl>
       <FormControl id="pic">
         <FormLabel>Upload your Picture</FormLabel>
-        <Input
-          type="file"
-          p={1.5}
-          accept="image/*"
-          onChange={(e) => postDetails(e.target.files[0])}
-        />
+        <InputGroup>
+          <Input
+            type="file"
+            p={1.5}
+            accept="image/*"
+            display="none"
+            id="upload-photo"
+            onChange={(e) => postDetails(e.target.files[0])}
+          />
+          <label htmlFor="upload-photo">
+            <IconButton
+              as="span"
+              icon={<AttachmentIcon />} // Ganti dengan icon gambar jika ingin, misal <FaRegImage />
+              colorScheme="blue"
+              aria-label="Upload Picture"
+              size="md"
+              variant="outline"
+            >
+              {/* Bisa tambahkan teks jika mau: Upload Picture */}
+            </IconButton>
+          </label>
+        </InputGroup>
       </FormControl>
       <Button
-        colorScheme="blue"
+        bg="#7685c8"
+        color="white"
+        _hover={{ bg: "#5a6aa8" }}
         width="100%"
         style={{ marginTop: 15 }}
         onClick={submitHandler}
