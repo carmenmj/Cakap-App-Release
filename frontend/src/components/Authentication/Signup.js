@@ -5,16 +5,16 @@ import { VStack } from "@chakra-ui/layout";
 import { useToast } from "@chakra-ui/toast";
 import axios from "axios";
 import { useState } from "react";
-import { useHistory } from "react-router";
+//import { useHistory } from "react-router";
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
-import { AttachmentIcon } from "@chakra-ui/icons"; 
+import { AttachmentIcon } from "@chakra-ui/icons";
 import { IconButton } from "@chakra-ui/react";
 
 const Signup = () => {
   const [show, setShow] = useState(false);
   const handleClick = () => setShow(!show);
   const toast = useToast();
-  const history = useHistory();
+  //const history = useHistory();
 
   const [name, setName] = useState();
   const [email, setEmail] = useState();
@@ -44,6 +44,7 @@ const Signup = () => {
         isClosable: true,
         position: "bottom",
       });
+      setPicLoading(false);
       return;
     }
     console.log(name, email, password, pic);
@@ -73,7 +74,6 @@ const Signup = () => {
       });
       setPicLoading(false);
       window.location.href = "/";
-
     } catch (error) {
       toast({
         title: "Error Occured!",

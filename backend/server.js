@@ -11,8 +11,9 @@ dotenv.config();
 connectDB();
 const app = express();
 
-app.use(express.json()); 
+app.use(express.json()); // allow server to read JSON from requests
 
+// main API routes
 app.use("/api/user", userRoutes);
 app.use("/api/chat", chatRoutes);
 app.use("/api/message", messageRoutes);
@@ -41,6 +42,7 @@ app.use(errorHandler);
 
 const PORT = process.env.PORT;
 
+// start the server
 const server = app.listen(
   PORT,
   console.log(`Server running on PORT ${PORT}...`.yellow.bold)
@@ -50,7 +52,7 @@ const io = require("socket.io")(server, {
   pingTimeout: 60000,
   cors: {
     origin: "http://localhost:3000",
-    // credentials: true,
+
   },
 });
 
@@ -67,7 +69,8 @@ io.on("connection", (socket) => {
   });
   socket.on("typing", (room) => socket.in(room).emit("typing"));
   socket.on("stop typing", (room) => socket.in(room).emit("stop typing"));
-
+  
+  // send new message to all users in chat except sender
   socket.on("new message", (newMessageRecieved) => {
     var chat = newMessageRecieved.chat;
 
@@ -80,6 +83,7 @@ io.on("connection", (socket) => {
     });
   });
 
+  // handle user disconnect
   socket.off("setup", () => {
     console.log("USER DISCONNECTED");
     socket.leave(userData._id);
