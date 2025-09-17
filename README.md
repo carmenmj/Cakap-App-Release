@@ -14,9 +14,13 @@ Cakap App is a full-stack chat application featuring real-time messaging, group 
 
 ### Prerequisites
 - Node.js (v14+)
-- npm or yarn
+- npm 
 - MongoDB (local or cloud)
 
+## For Web Access (Deployment)
+https://cakap-chatapp.vercel.app/chats
+
+## For Local Setup
 ### Backend Setup
 1. Navigate to the backend folder:
    ```sh
