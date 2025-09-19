@@ -19,6 +19,8 @@ Cakap App is a full-stack chat application featuring real-time messaging, group 
 
 ## For Web Access (Deployment)
 https://cakap-chatapp.vercel.app
+Please note that we fail to perfect this deployment as there are some bugs that have not been fixed and we encourage users to use the local development environment instead. Our team remains committed to refining the deployment but until then, the local environment remains the recommended way to experience Cakap App’s full functionality without disruptions.
+
 
 ## For Local Setup
 ### Backend Setup
